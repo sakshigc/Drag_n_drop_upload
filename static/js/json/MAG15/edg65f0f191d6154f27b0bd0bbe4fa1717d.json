@@ -1,0 +1,1 @@
+{"metadata": {"version": 4.4, "type": "BufferGeometry", "generator": "pythonocc"}, "uuid": "edg65f0f191d6154f27b0bd0bbe4fa1717d", "type": "BufferGeometry", "data": {"attributes": {"position": {"itemSize": 3, "type": "Float32Array", "array": [80.80077362060547, 138.7076873779297, 126.18843841552734, 80.17460632324219, 139.32493591308594, 126.18843841552734]}}}}

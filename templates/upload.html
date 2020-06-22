@@ -1,0 +1,69 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>uploader</title>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+  <link href="{% static 'css/bootstrap.css'%}" rel="stylesheet">
+  <link href="{% static 'css/mdb.css'%}" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}" type="text/css">
+  <link rel="stylesheet" href="{% static 'css/nice-select.css' %}" type="text/css">
+  <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}" type="text/css">
+  <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}" type="text/css">
+  <link rel="stylesheet" href="{% static 'css/slicknav.min.css' %}" type="text/css">  
+  <link rel="stylesheet" href="{% static 'css/denge.css' %}" type="text/css">
+  <link href="{% static 'css/style.css'%}" rel="stylesheet">
+  <style type="text/css">
+    html,
+    body,
+    header,
+    .carousel {
+      height: 80vh;
+    }
+
+    @media (max-width: 740px) {
+
+      html,
+      body,
+      header,
+      .carousel {
+        height: 80vh;
+      }
+    }
+
+    @media (min-width: 800px) and (max-width: 850px) {
+
+      html,
+      body,
+      header,
+      .carousel {
+        height: 80vh;
+      }
+    }
+
+  </style>
+</head>
+
+
+
+<body class="black-background">
+
+<div class="container text-center">
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+<!--     {{ form.as_p }} -->
+    <input type="file" name="myfile">
+    <button type="submit">Upload</button>
+  </form>
+
+
+
+  <p><a href="/">Return to home</a></p>
+</div>
+
+</body>
+</html>
