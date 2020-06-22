@@ -44,6 +44,20 @@
         height: 80vh;
       }
     }
+    #dropContainer
+  {
+    border:1px solid black;
+    height:100px;
+    font-size: 20px;
+
+  }
+  #holder
+  {
+
+    width:200px;
+    height:200px;
+    border: 5px solid #ccc
+  }
 
   </style>
 </head>
@@ -57,6 +71,10 @@
     {% csrf_token %}
 <!--     {{ form.as_p }} -->
     <input type="file" name="myfile">
+    <div id="uploads"></div>
+    <div id="holder" class="holder" name="area">
+      
+    </div>
     <button type="submit">Upload</button>
   </form>
 
@@ -64,6 +82,59 @@
 
   <p><a href="/">Return to home</a></p>
 </div>
+<script>
+(function()
+{
+  var holder = document.getElementById('holder');
 
+  // var displayUploads = function(data)
+  // {
+  //   var uploads=document.getElementById('uploads'),
+  //   anchor,
+  //   x;
+  //   for(x = 0; x <data.length; x=x+1)
+  //   {
+  //     anchor=document.createElement('a');
+  //     anchor.href = data[x].file;
+  //     anchor.innerText = data[x].name;
+
+  //     uploads.appendChild(anchor);
+  //   }
+  // }
+
+  
+
+
+  var readfiles = function(files){
+    var formData = new FormData(),
+    xhr = new XMLHttpRequest(),
+    x;
+    for(x = 0; x < files.length; x=x+1)
+    {
+      formData.append('file[]',files[x]);
+    }
+    xhr.onload = function()
+    {
+      var data = JSON.parse(this.responseText);
+      console.log(data);
+    }
+    // xhr.open('post','');
+    // xhr.send(formData)
+    }
+
+
+  holder.ondrop = function(e){
+    e.preventDefault();
+    this.className = 'holder';
+      readfiles(e.dataTransfer.files);
+  };
+  holder.ondragover = function (){ this.className = 'hover'; return false; };
+
+  holder.ondragleave=function () { this.className = 'holder'; return false; };
+
+
+
+}());
+</script>
 </body>
 </html>
