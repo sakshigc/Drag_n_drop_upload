@@ -4,6 +4,8 @@
 
 ## Create virtual enviroment
 
+You can create virtual enviroment in virtualenv or in conda. steps for virtualenv are below: 
+
 ### Install **pip** first
 
     sudo apt-get install python3-pip
