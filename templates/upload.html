@@ -98,13 +98,6 @@
 
         var URL = "C:/Users/Lenovo/Desktop/upload/file_uploader/views.py";
         xhr.open('post',URL,true);
-        xhr.onload = function () {
-          if (xhr.status === 200) {
-            statusDiv.innerHTML = 'Your upload is successful..';
-          } else {
-            statusDiv.innerHTML = 'An error occurred during the upload. Try again.';
-          }
-        };
         xhr.send(formData); 
 
 
