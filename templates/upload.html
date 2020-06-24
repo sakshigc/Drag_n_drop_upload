@@ -17,6 +17,7 @@
   <link rel="stylesheet" href="{% static 'css/slicknav.min.css' %}" type="text/css">  
   <link rel="stylesheet" href="{% static 'css/denge.css' %}" type="text/css">
   <link href="{% static 'css/style.css'%}" rel="stylesheet">
+  
   <style type="text/css">
     html,
     body,
@@ -44,21 +45,20 @@
         height: 80vh;
       }
     }
-   /* #dropContainer
-  {
-    border:1px solid black;
-    height:100px;
-    font-size: 20px;
+    .file_drag_area  
+           {  
+                width:600px;  
+                height:400px;  
+                border:2px dashed #ccc;  
+                line-height:400px;  
+                text-align:center;  
+                font-size:24px;  
+           }  
+           .file_drag_over{  
+                color:#000;  
+                border-color:#000;  
+           }  
 
-  }
-  #holder
-  {
-
-    width:200px;
-    height:200px;
-    border: 5px solid #ccc
-  }
-*/
 .dropzone{
    width:300px;
    height:300px;
@@ -73,136 +73,66 @@
     color:#000;
  }
   </style>
-</head>
-
-
-
-<body class="black-background">
-
-<div class="container text-center">
-  <form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-<!--     {{ form.as_p }} -->
-    <input type="file" name="myfile">
-    <div id="upload"></div>
-<div class="dropzone" id="dropzone">Drop files here</div>
-    <button type="submit">Upload</button>
-  </form>
-
-
-
-  <p><a href="/">Return to home</a></p>
-</div>
-<script>
-// (function()
-// {
-//   var holder = document.getElementById('holder');
-
-//   // var displayUploads = function(data)
-//   // {
-//   //   var uploads=document.getElementById('uploads'),
-//   //   anchor,
-//   //   x;
-//   //   for(x = 0; x <data.length; x=x+1)
-//   //   {
-//   //     anchor=document.createElement('a');
-//   //     anchor.href = data[x].file;
-//   //     anchor.innerText = data[x].name;
-
-//   //     uploads.appendChild(anchor);
-//   //   }
-//   // }
-
   
-
-
-//   var readfiles = function(files){
-//     var formData = new FormData(),
-//     xhr = new XMLHttpRequest(),
-//     x;
-//     for(x = 0; x < files.length; x=x+1)
-//     {
-//       formData.append('file[]',files[x]);
-//     }
-//     xhr.onload = function()
-//     {
-//       var data = JSON.parse(this.responseText);
-//       console.log(data);
-//     }
-//     // xhr.open('post','');
-//     // xhr.send(formData)
-//     }
-
-
-//   holder.ondrop = function(e){
-//     e.preventDefault();
-//     this.className = 'holder';
-//       readfiles(e.dataTransfer.files);
-//   };
-//   holder.ondragover = function (){ this.className = 'hover'; return false; };
-
-//   holder.ondragleave=function () { this.className = 'holder'; return false; };
-
-// --------------------------------------------
-// function traverseFileTree(item, path) {
-//   path = path || "";
-//   if (item.isFile) {
-    
-//     item.file(function(file) {
-//       console.log("File:", path + file.name);
-//     });
-//   } else if (item.isDirectory) {
-    
-//     var dirReader = item.createReader();
-//     dirReader.readEntries(function(entries) {
-//       for (var i=0; i<entries.length; i++) {
-//         traverseFileTree(entries[i], path + item.name + "/");
-//       }
-//     });
-//   }
-// }
-
-// dropArea.addEventListener("drop", function(event) {
-//   event.preventDefault();
-
-//   var items = event.dataTransfer.items;
-//   for (var i=0; i<items.length; i++) {
-    
-//     var item = items[i].webkitGetAsEntry();
-//     if (item) {
-//       traverseFileTree(item);
-//     }
-//   }
-// }, false);
-// }());
-// -------------------------------------------------------
-
-
-(function(){
+</head>
+<body>
+   
+<div id="uploads"></div>
+  <div class="dropzone" id="dropzone">Drop files here</div>
+<script>
+  (function() {
     var dropzone=document.getElementById('dropzone');
 
 
+    var upload = function(files) 
+    {
+        var formData = new FormData(),
+        xhr = new XMLHttpRequest(),
+        x;
+
+        for(x = 0; x<files.length; x=x+1)
+        {
+          formData.append('file[]',files[x]);
+        }
+        
+
+        var URL = "C:/Users/Lenovo/Desktop/upload/file_uploader/views.py";
+        xhr.open('post',URL,true);
+        xhr.onload = function () {
+          if (xhr.status === 200) {
+            statusDiv.innerHTML = 'Your upload is successful..';
+          } else {
+            statusDiv.innerHTML = 'An error occurred during the upload. Try again.';
+          }
+        };
+        xhr.send(formData); 
+
+
+    }
     dropzone.ondrop=function(e){
-      fileinput.files=e.dataTransfer.files
-      console.log(fileinput.files)
-    // e.preventDefault();
-    // this.className='dropzone';
-
-    // x=e.dataTransfer.files
+      e.preventDefault();
+      this.className = 'dropzone';
+      
+      upload(e.dataTransfer.files);
+       
     };
-
-    dropzone.ondragover=function(){
-    this.className='dropzone dragover';
-    return false;
-    };
-
-    dropzone.ondragleave=function(){
-     this.className='dropzone';
-
-     return false;
+    dropzone.ondragover=function()
+     {
+        this.className='dropzone dragover';
+        return false;
      };
-    }());
+    dropzone.ondragleave=function()
+    {
+        this.className='dropzone';
+        return false;
+    };
+
+  }());
+
 
 </script>
-</body>
-</html>
+
+ </body>
+
+ </html>
+ 
