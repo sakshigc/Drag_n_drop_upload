@@ -15,9 +15,9 @@ from django.views.generic import View
 
 def model_form_upload(request):
 
-	if request.method == 'POST' and request.FILES['myfile']:
+	if request.method == 'POST' and request.FILES['file']:
 		# form = UploadFileForm(request.POST, request.FILES)
-		myfile = request.FILES['myfile']
+		myfile = request.FILES['file']
 		fs = FileSystemStorage()
 		filename = fs.save(myfile.name, myfile)
 		uploaded_file_url = fs.url(filename)

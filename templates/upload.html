@@ -7,17 +7,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>uploader</title>
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
-  <link href="{% static 'css/bootstrap.css'%}" rel="stylesheet">
-  <link href="{% static 'css/mdb.css'%}" rel="stylesheet">
-  <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}" type="text/css">
-  <link rel="stylesheet" href="{% static 'css/nice-select.css' %}" type="text/css">
-  <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}" type="text/css">
-  <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}" type="text/css">
-  <link rel="stylesheet" href="{% static 'css/slicknav.min.css' %}" type="text/css">  
-  <link rel="stylesheet" href="{% static 'css/denge.css' %}" type="text/css">
-  <link href="{% static 'css/style.css'%}" rel="stylesheet">
   
+ 
+  
+  <link href="{% static 'css/basic.css'%}" rel="stylesheet" type="text\css">
+  <link href="{% static 'css/dropzone.css'%}" rel="stylesheet" type="text\css">
+  <script src="{% static 'js/dropzone.js'%}"></script>
   <style type="text/css">
     html,
     body,
@@ -73,59 +68,26 @@
     color:#000;
  }
   </style>
-  
-</head>
-<body>
-   
-<div id="uploads"></div>
-  <div class="dropzone" id="dropzone">Drop files here</div>
-<script>
-  (function() {
-    var dropzone=document.getElementById('dropzone');
 
-
-    var upload = function(files) 
-    {
-        var formData = new FormData(),
-        xhr = new XMLHttpRequest(),
-        x;
-
-        for(x = 0; x<files.length; x=x+1)
-        {
-          formData.append('file[]',files[x]);
-        }
-        
-
-        var URL = "C:/Users/Lenovo/Desktop/upload/file_uploader/views.py";
-        xhr.open('post',URL,true);
-        xhr.send(formData); 
-
-
-    }
-    dropzone.ondrop=function(e){
-      e.preventDefault();
-      this.className = 'dropzone';
-      
-      upload(e.dataTransfer.files);
-       
-    };
-    dropzone.ondragover=function()
-     {
-        this.className='dropzone dragover';
-        return false;
-     };
-    dropzone.ondragleave=function()
-    {
-        this.className='dropzone';
-        return false;
-    };
-
-  }());
 
 
 </script>
+</head>
+<body>
+   <form action={% url 'model_form_upload' %} method="post" class="dropzone">
+    {% csrf_token %}
+  <div class="fallback">
+    <input name="file" type="file" multiple />
+  </div>
+</form>
+
 
  </body>
 
  </html>
+ 
+
+
+
+
  
