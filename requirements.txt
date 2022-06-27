@@ -26,6 +26,6 @@ PyPDF2==1.26.0
 django-extensions==2.1.4
 
 html5lib==1.0.1
-reportlab==3.5.12
+reportlab==3.5.55
 six==1.11.0
 xhtml2pdf==0.2.3
